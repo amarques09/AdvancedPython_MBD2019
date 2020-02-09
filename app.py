@@ -1,7 +1,5 @@
 import datetime as dt
 from flask import Flask, request
-from sklearn.linear_model import Ridge
-from xgboost import XBRegressor
 
 from ie_bike_model.model import predict
 
