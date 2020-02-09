@@ -199,17 +199,12 @@ def train_and_persist(model_dir=None, hour_path=None, model="xgboost"):
     hour = dummify(hour)
     hour = postprocess(hour)
 
-    # TODO: Implement other models?
-    	if model == "xgboost":
-    		a_model = train_xgboost(hour)
-	elif model == "ridge": 
-		a_model = train_ridge(hour)
-     	
+    if model == "xgboost": a_model = train_xgboost(hour)
+    	elif model == "ridge": a_model = train_ridge(hour)
 
     model_path = get_model_path(model_dir)
 
     joblib.dump(a_model, model_path)
-
 
 
 def get_input_dict(parameters):
