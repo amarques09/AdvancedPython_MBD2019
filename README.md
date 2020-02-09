@@ -1,3 +1,5 @@
+Amanda Marques
+
 # Bike sharing prediction model
 
 ## Usage
