@@ -29,8 +29,8 @@ def get_predict():
     parameters["weathersit"] = int(parameters.get("weathersit", weather_avg))
     parameters["temperature_C"] = float(parameters.get("temperature_C", temp_avg))
     parameters["feeling_temperature_C"] = float(parameters.get("feeling_temperature_C",feeling_avg))
-    parameters["humidity"] = float(parameters.get("humidity",humidity_avg)
-    parameters["windspeed"] = float(parameters.get("windspeed",windspeed_avg)
+    parameters["humidity"] = float(parameters.get("humidity",humidity_avg))
+    parameters["windspeed"] = float(parameters.get("windspeed",windspeed_avg))
     
     start_prediction = dt.datetime.now()
     result = predict(parameters,model = parameters.get('model'))
