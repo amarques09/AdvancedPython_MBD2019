@@ -201,7 +201,7 @@ def train_and_persist(model_dir=None, hour_path=None, model="xgboost"):
     hour = preprocess(hour)
     hour = dummify(hour)
     hour = postprocess(hour)
-    
+
     model_path = get_model_path(model_dir, model)
 
     # Implementing other models:
@@ -211,7 +211,6 @@ def train_and_persist(model_dir=None, hour_path=None, model="xgboost"):
     elif model == "ridge":
         a_model = train_ridge(hour)
 
-    
     joblib.dump(a_model, model_path)
 
 
