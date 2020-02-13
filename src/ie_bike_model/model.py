@@ -259,7 +259,7 @@ def predict(parameters, model_dir=None, model="xgboost"):
     """Returns model prediction.
 
     """
-    model_path = get_model_path(model_dir)
+    model_path = get_model_path(model_dir, model)
     if not os.path.exists(model_path):
         train_and_persist(model_dir=model_dir, model=model)
 

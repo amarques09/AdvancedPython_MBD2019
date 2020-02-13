@@ -2,9 +2,9 @@ Amanda Marques
 
 # Bike sharing prediction model
 
-###how to build it from scratch:
+##how to build it from scratch:
 
-#Individual Assignment Steps:
+
 #
 #	1. $ git clone https://github.com/IE-Advanced-Python/ie-bike-sharing-model-lib-ref.
 #	2. cd ie-bike-sharing-model-lib-ref/
