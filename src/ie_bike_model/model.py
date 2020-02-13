@@ -152,7 +152,7 @@ def train_xgboost(hour):
     xgb = XGBRegressor(
         max_depth=3,
         learning_rate=0.03,
-        n_estimators=15,
+        n_estimators=100,
         objective="reg:squarederror",
         subsample=0.8,
         colsample_bytree=0.5,
@@ -201,6 +201,9 @@ def train_and_persist(model_dir=None, hour_path=None, model="xgboost"):
     hour = preprocess(hour)
     hour = dummify(hour)
     hour = postprocess(hour)
+    
+    model_path = get_model_path(model_dir, model)
+
     # Implementing other models:
     if model == "xgboost":
         a_model = train_xgboost(hour)
@@ -208,8 +211,7 @@ def train_and_persist(model_dir=None, hour_path=None, model="xgboost"):
     elif model == "ridge":
         a_model = train_ridge(hour)
 
-    model_path = get_model_path(model_dir, model)
-
+    
     joblib.dump(a_model, model_path)
 
 
