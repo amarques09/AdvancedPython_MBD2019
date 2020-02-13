@@ -151,11 +151,11 @@ def train_xgboost(hour):
 
     xgb = XGBRegressor(
         max_depth=3,
-        learning_rate=0.01,
+        learning_rate=0.03,
         n_estimators=15,
         objective="reg:squarederror",
         subsample=0.8,
-        colsample_bytree=1,
+        colsample_bytree=0.5,
         seed=1234,
         gamma=1,
     )
@@ -163,7 +163,9 @@ def train_xgboost(hour):
     xgb.fit(hour_d_train_x, hour_d_train_y)
     return xgb
 
+
 # New function for Ridge Regression
+
 
 def train_ridge(hour):
     # Avoid modifying the original dataset at the cost of RAM
@@ -180,10 +182,11 @@ def train_ridge(hour):
 
     hour_d_train_x, _, hour_d_train_y, _, = split_train_test(hour_d)
 
-    ridge = Ridge(alpha=1.0)
+    ridge = Ridge(random_state=1234)
 
     ridge.fit(hour_d_train_x, hour_d_train_y)
     return ridge
+
 
 def postprocess(hour):
     # Avoid modifying the original dataset at the cost of RAM
@@ -198,7 +201,7 @@ def train_and_persist(model_dir=None, hour_path=None, model="xgboost"):
     hour = preprocess(hour)
     hour = dummify(hour)
     hour = postprocess(hour)
-    #Implementing other models:
+    # Implementing other models:
     if model == "xgboost":
         a_model = train_xgboost(hour)
 
@@ -252,13 +255,13 @@ def get_input_dict(parameters):
     return df.iloc[0].to_dict()
 
 
-def predict(parameters, model_dir=None, model = 'xgboost'):
+def predict(parameters, model_dir=None, model="xgboost"):
     """Returns model prediction.
 
     """
     model_path = get_model_path(model_dir)
     if not os.path.exists(model_path):
-        train_and_persist(model_dir=model_dir, model = model)
+        train_and_persist(model_dir=model_dir, model=model)
 
     model = joblib.load(model_path)
 
